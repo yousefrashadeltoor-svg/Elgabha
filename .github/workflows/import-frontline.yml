@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - "frontline-1943-g1.zip"
+      - "frontline-1943-g1.zip.part1"
+      - "frontline-1943-g1.zip.part2"
   workflow_dispatch:
 
 permissions:
@@ -20,10 +22,17 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Verify the uploaded game archive
+      - name: Reassemble and verify the original game archive
         shell: bash
         run: |
           set -euo pipefail
+          if [[ -f frontline-1943-g1.zip.part1 || -f frontline-1943-g1.zip.part2 ]]; then
+            test -f frontline-1943-g1.zip.part1
+            test -f frontline-1943-g1.zip.part2
+            echo "8756df9efdbc7792155d4b26de06b263498534f82769f9ae49d2f00c29a8a6ba  frontline-1943-g1.zip.part1" | sha256sum --check
+            echo "c7f0217a15bba4bd28bdc722b5932fdd59129e9b92a78f1d71de74f823d54656  frontline-1943-g1.zip.part2" | sha256sum --check
+            cat frontline-1943-g1.zip.part1 frontline-1943-g1.zip.part2 > frontline-1943-g1.zip
+          fi
           test -f frontline-1943-g1.zip
           echo "89974e3313a0736da3d532e66975983028920d1ddc4ac9b1d215f59534c2e122  frontline-1943-g1.zip" | sha256sum --check
 
@@ -51,7 +60,7 @@ jobs:
         run: |
           set -euo pipefail
           cp -a /tmp/frontline-source/. .
-          rm -f frontline-1943-g1.zip
+          rm -f frontline-1943-g1.zip frontline-1943-g1.zip.part1 frontline-1943-g1.zip.part2
           rm -rf /tmp/frontline-source /tmp/frontline-check
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
