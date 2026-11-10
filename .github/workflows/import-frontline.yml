@@ -125,6 +125,13 @@ jobs:
           Path("/tmp/frontline-project-path").write_text(str(project))
           PY
 
+      - name: Install Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: "**/package-lock.json"
+
       - name: Install locked dependencies and validate the game
         shell: bash
         run: |
@@ -144,7 +151,7 @@ jobs:
         run: |
           set -euo pipefail
           PROJECT="$(cat /tmp/frontline-project-path)"
-          rsync -a "$PROJECT/" ./
+          rsync -a --exclude=node_modules --exclude=dist --exclude=.git "$PROJECT/" ./
           rm -f frontline-1943-g1.zip public.zip
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
