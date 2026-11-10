@@ -1,6 +1,10 @@
 name: Import original Frontline 1943 and validate
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "frontline-1943-g1.zip"
   workflow_dispatch:
 
 permissions:
