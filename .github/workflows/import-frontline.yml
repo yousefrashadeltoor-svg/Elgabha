@@ -1,12 +1,12 @@
-name: Import original Frontline 1943 and validate
+name: Import and validate Frontline 1943
 
 on:
   push:
     branches: [main]
     paths:
       - "frontline-1943-g1.zip"
-      - "frontline-1943-g1.zip.part1"
-      - "frontline-1943-g1.zip.part2"
+      - "public.zip"
+      - ".github/workflows/import-frontline.yml"
   workflow_dispatch:
 
 permissions:
@@ -15,65 +15,152 @@ permissions:
 jobs:
   import-and-check:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Check out repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
 
-      - name: Reassemble and verify the original game archive
+      - name: Validate and safely extract both archives
         shell: bash
         run: |
           set -euo pipefail
-          if [[ -f frontline-1943-g1.zip.part1 || -f frontline-1943-g1.zip.part2 ]]; then
-            test -f frontline-1943-g1.zip.part1
-            test -f frontline-1943-g1.zip.part2
-            echo "8756df9efdbc7792155d4b26de06b263498534f82769f9ae49d2f00c29a8a6ba  frontline-1943-g1.zip.part1" | sha256sum --check
-            echo "c7f0217a15bba4bd28bdc722b5932fdd59129e9b92a78f1d71de74f823d54656  frontline-1943-g1.zip.part2" | sha256sum --check
-            cat frontline-1943-g1.zip.part1 frontline-1943-g1.zip.part2 > frontline-1943-g1.zip
-          fi
-          test -f frontline-1943-g1.zip
-          echo "89974e3313a0736da3d532e66975983028920d1ddc4ac9b1d215f59534c2e122  frontline-1943-g1.zip" | sha256sum --check
+          test -s frontline-1943-g1.zip
+          test -s public.zip
+          python3 - <<'PY'
+          from pathlib import Path, PurePosixPath
+          from zipfile import ZipFile, BadZipFile
 
-      - name: Extract an untouched source copy
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p /tmp/frontline-source
-          unzip -q frontline-1943-g1.zip -d /tmp/frontline-source
-          test -f /tmp/frontline-source/package.json
-          test -f /tmp/frontline-source/index.html
-          cp -a /tmp/frontline-source /tmp/frontline-check
+          archives = [
+              (Path("frontline-1943-g1.zip"), Path("/tmp/frontline-main")),
+              (Path("public.zip"), Path("/tmp/frontline-extra")),
+          ]
+          for archive, target in archives:
+              try:
+                  with ZipFile(archive) as zf:
+                      bad = zf.testzip()
+                      if bad:
+                          raise SystemExit(f"Corrupt member in {archive.name}: {bad}")
+                      for item in zf.infolist():
+                          name = item.filename.replace("\\", "/")
+                          path = PurePosixPath(name)
+                          if path.is_absolute() or ".." in path.parts:
+                              raise SystemExit(f"Unsafe path in {archive.name}: {item.filename}")
+                      zf.extractall(target)
+              except BadZipFile as exc:
+                  raise SystemExit(f"{archive.name} is not a valid ZIP archive: {exc}")
+              print(f"{archive.name}: valid ZIP, {len(zf.infolist())} entries")
+          PY
 
-      - name: Install locked dependencies and run tests/build
+      - name: Locate the project and restore missing texture files
         shell: bash
-        working-directory: /tmp/frontline-check
         run: |
           set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import shutil
+
+          main = Path("/tmp/frontline-main")
+          extra = Path("/tmp/frontline-extra")
+          packages = [p for p in main.rglob("package.json") if "node_modules" not in p.parts]
+          if len(packages) != 1:
+              raise SystemExit(f"Expected exactly one project package.json, found {len(packages)}")
+          project = packages[0].parent
+          if not (project / "index.html").is_file():
+              raise SystemExit("The project root does not contain index.html")
+          if not (project / "package-lock.json").is_file():
+              raise SystemExit("The project root does not contain package-lock.json")
+
+          extra_texture_dirs = [p for p in extra.rglob("textures") if p.is_dir()]
+          if len(extra_texture_dirs) != 1:
+              raise SystemExit(
+                  "Expected exactly one textures folder inside public.zip; found: "
+                  + ", ".join(str(p.relative_to(extra)) for p in extra_texture_dirs)
+              )
+
+          target = project / "public" / "assets" / "textures"
+          target.mkdir(parents=True, exist_ok=True)
+          source = extra_texture_dirs[0]
+
+          def digest(path):
+              h = hashlib.sha256()
+              with path.open("rb") as f:
+                  for block in iter(lambda: f.read(1024 * 1024), b""):
+                      h.update(block)
+              return h.hexdigest()
+
+          added = 0
+          identical = 0
+          conflicts = []
+          for src in source.rglob("*"):
+              if not src.is_file():
+                  continue
+              rel = src.relative_to(source)
+              dst = target / rel
+              dst.parent.mkdir(parents=True, exist_ok=True)
+              if dst.exists():
+                  if digest(src) == digest(dst):
+                      identical += 1
+                  else:
+                      conflicts.append(str(rel))
+                  continue
+              shutil.copy2(src, dst)
+              added += 1
+
+          print(f"Project root: {project}")
+          print(f"Supplement texture folder: {source}")
+          print(f"Missing texture files restored: {added}")
+          print(f"Identical files already present: {identical}")
+          if conflicts:
+              print("Files with the same path but different content (left untouched):")
+              for name in conflicts[:100]:
+                  print(f"  {name}")
+              raise SystemExit(
+                  f"Found {len(conflicts)} conflicting texture file(s); stopped rather than overwrite originals."
+              )
+          if added + identical == 0:
+              raise SystemExit("The supplement contains no texture files.")
+          Path("/tmp/frontline-project-path").write_text(str(project))
+          PY
+
+      - name: Install locked dependencies and validate the game
+        shell: bash
+        run: |
+          set -euo pipefail
+          PROJECT="$(cat /tmp/frontline-project-path)"
+          cd "$PROJECT"
+          node --version
+          npm --version
           npm ci --no-audit --no-fund
           npm test
           npm run build
 
-      - name: Add the exact original source to the repository
-        shell: bash
-        run: |
-          set -euo pipefail
-          cp -a /tmp/frontline-source/. .
-          rm -f frontline-1943-g1.zip frontline-1943-g1.zip.part1 frontline-1943-g1.zip.part2
-          rm -rf /tmp/frontline-source /tmp/frontline-check
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Import original Frontline 1943 game"
-        env:
-          GIT_CONFIG_NOSYSTEM: "1"
-
-      - name: Push validated game files to main
+      - name: Publish the validated source to main
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
+          PROJECT="$(cat /tmp/frontline-project-path)"
+          rsync -a "$PROJECT/" ./
+          rm -f frontline-1943-g1.zip public.zip
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No source changes to publish."
+            exit 0
+          fi
+          git commit -m "Import and restore Frontline 1943 assets"
           AUTH="$(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w0)"
           git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $AUTH" push origin HEAD:main
+
+      - name: Upload production build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontline-1943-production-build
+          path: /tmp/frontline-main/**/dist
+          if-no-files-found: warn
+          retention-days: 14
