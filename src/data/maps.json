@@ -1,0 +1,653 @@
+[
+  {
+    "id": "village_kalinovka",
+    "name": {
+      "en": "Kalinovka Village",
+      "ar": "قرية كالينوفكا"
+    },
+    "size": 400,
+    "resolution": 129,
+    "seed": 19430712,
+    "layers": [
+      {
+        "texture": "withered_grass",
+        "tile": 12,
+        "slopeMin": 0.0,
+        "slopeMax": 0.35,
+        "heightMin": -100,
+        "heightMax": 100
+      },
+      {
+        "texture": "brown_mud",
+        "tile": 9,
+        "slopeMin": 0.0,
+        "slopeMax": 0.5,
+        "heightMin": -100,
+        "heightMax": 100
+      },
+      {
+        "texture": "dirt",
+        "tile": 8,
+        "slopeMin": 0.0,
+        "slopeMax": 0.6,
+        "heightMin": -100,
+        "heightMax": 100
+      },
+      {
+        "texture": "gravel",
+        "tile": 7,
+        "slopeMin": 0.0,
+        "slopeMax": 0.7,
+        "heightMin": -100,
+        "heightMax": 100
+      },
+      {
+        "texture": "dark_rock",
+        "tile": 6,
+        "slopeMin": 0.45,
+        "slopeMax": 1.0,
+        "heightMin": -100,
+        "heightMax": 100
+      },
+      {
+        "texture": "forest_floor",
+        "tile": 10,
+        "slopeMin": 0.0,
+        "slopeMax": 0.4,
+        "heightMin": -100,
+        "heightMax": 100
+      }
+    ],
+    "buildings": [
+      {
+        "type": "izba",
+        "x": -60,
+        "z": -40,
+        "rot": 0.0,
+        "scale": 1.0
+      },
+      {
+        "type": "izba",
+        "x": -30,
+        "z": -52,
+        "rot": 0.35,
+        "scale": 1.1
+      },
+      {
+        "type": "izba",
+        "x": 5,
+        "z": -44,
+        "rot": -0.2,
+        "scale": 0.95
+      },
+      {
+        "type": "izba",
+        "x": 38,
+        "z": -55,
+        "rot": 0.1,
+        "scale": 1.05
+      },
+      {
+        "type": "izba",
+        "x": 66,
+        "z": -38,
+        "rot": -0.4,
+        "scale": 1.0
+      },
+      {
+        "type": "izba",
+        "x": -72,
+        "z": 8,
+        "rot": 0.5,
+        "scale": 1.0
+      },
+      {
+        "type": "izba",
+        "x": -34,
+        "z": 16,
+        "rot": -0.15,
+        "scale": 1.15
+      },
+      {
+        "type": "izba",
+        "x": 12,
+        "z": 6,
+        "rot": 0.25,
+        "scale": 1.0
+      },
+      {
+        "type": "izba",
+        "x": 52,
+        "z": 18,
+        "rot": -0.3,
+        "scale": 1.05
+      },
+      {
+        "type": "izba",
+        "x": 78,
+        "z": 4,
+        "rot": 0.2,
+        "scale": 0.9
+      },
+      {
+        "type": "barn",
+        "x": -18,
+        "z": 62,
+        "rot": 0.0,
+        "scale": 1.0
+      },
+      {
+        "type": "barn",
+        "x": 44,
+        "z": 70,
+        "rot": 0.4,
+        "scale": 1.1
+      },
+      {
+        "type": "church",
+        "x": 0,
+        "z": -8,
+        "rot": 0.0,
+        "scale": 1.0
+      },
+      {
+        "type": "ruin",
+        "x": -88,
+        "z": -20,
+        "rot": 0.6,
+        "scale": 1.0
+      },
+      {
+        "type": "ruin",
+        "x": 90,
+        "z": 40,
+        "rot": -0.5,
+        "scale": 1.0
+      },
+      {
+        "type": "ruin",
+        "x": 20,
+        "z": 96,
+        "rot": 0.2,
+        "scale": 1.2
+      },
+      {
+        "type": "shed",
+        "x": -50,
+        "z": 40,
+        "rot": 0.3,
+        "scale": 1.0
+      },
+      {
+        "type": "shed",
+        "x": 70,
+        "z": -12,
+        "rot": -0.25,
+        "scale": 1.0
+      }
+    ],
+    "trenches": [
+      {
+        "points": [
+          [
+            -140,
+            -120
+          ],
+          [
+            -90,
+            -110
+          ],
+          [
+            -40,
+            -118
+          ],
+          [
+            10,
+            -108
+          ],
+          [
+            60,
+            -116
+          ],
+          [
+            110,
+            -106
+          ]
+        ],
+        "width": 2.2,
+        "depth": 1.4
+      },
+      {
+        "points": [
+          [
+            -150,
+            120
+          ],
+          [
+            -100,
+            112
+          ],
+          [
+            -50,
+            122
+          ],
+          [
+            0,
+            114
+          ],
+          [
+            50,
+            124
+          ],
+          [
+            100,
+            116
+          ],
+          [
+            150,
+            126
+          ]
+        ],
+        "width": 2.2,
+        "depth": 1.4
+      },
+      {
+        "points": [
+          [
+            -120,
+            -60
+          ],
+          [
+            -118,
+            -20
+          ],
+          [
+            -124,
+            20
+          ],
+          [
+            -116,
+            60
+          ]
+        ],
+        "width": 1.8,
+        "depth": 1.2
+      },
+      {
+        "points": [
+          [
+            120,
+            -60
+          ],
+          [
+            118,
+            -20
+          ],
+          [
+            124,
+            20
+          ],
+          [
+            116,
+            60
+          ]
+        ],
+        "width": 1.8,
+        "depth": 1.2
+      }
+    ],
+    "props": [
+      {
+        "type": "sandbag",
+        "x": -100,
+        "z": -100,
+        "rot": 0.0
+      },
+      {
+        "type": "sandbag",
+        "x": -96,
+        "z": -100,
+        "rot": 0.0
+      },
+      {
+        "type": "sandbag",
+        "x": -92,
+        "z": -100,
+        "rot": 0.0
+      },
+      {
+        "type": "sandbag",
+        "x": 40,
+        "z": -104,
+        "rot": 0.2
+      },
+      {
+        "type": "sandbag",
+        "x": 44,
+        "z": -104,
+        "rot": 0.2
+      },
+      {
+        "type": "sandbag",
+        "x": 48,
+        "z": -104,
+        "rot": 0.2
+      },
+      {
+        "type": "sandbag",
+        "x": -60,
+        "z": 110,
+        "rot": -0.1
+      },
+      {
+        "type": "sandbag",
+        "x": -56,
+        "z": 110,
+        "rot": -0.1
+      },
+      {
+        "type": "sandbag",
+        "x": 80,
+        "z": 112,
+        "rot": 0.3
+      },
+      {
+        "type": "sandbag",
+        "x": 84,
+        "z": 112,
+        "rot": 0.3
+      },
+      {
+        "type": "barbedwire",
+        "x": -130,
+        "z": -80,
+        "rot": 0.0
+      },
+      {
+        "type": "barbedwire",
+        "x": -130,
+        "z": -70,
+        "rot": 0.0
+      },
+      {
+        "type": "barbedwire",
+        "x": -130,
+        "z": -60,
+        "rot": 0.0
+      },
+      {
+        "type": "barbedwire",
+        "x": 130,
+        "z": 80,
+        "rot": 0.0
+      },
+      {
+        "type": "barbedwire",
+        "x": 130,
+        "z": 70,
+        "rot": 0.0
+      },
+      {
+        "type": "barbedwire",
+        "x": 130,
+        "z": 60,
+        "rot": 0.0
+      },
+      {
+        "type": "crate",
+        "x": -20,
+        "z": 30,
+        "rot": 0.4
+      },
+      {
+        "type": "crate",
+        "x": -18,
+        "z": 32,
+        "rot": 0.1
+      },
+      {
+        "type": "crate",
+        "x": 30,
+        "z": -20,
+        "rot": -0.3
+      },
+      {
+        "type": "barrel",
+        "x": 26,
+        "z": -18,
+        "rot": 0.0
+      },
+      {
+        "type": "barrel",
+        "x": 28,
+        "z": -22,
+        "rot": 0.0
+      },
+      {
+        "type": "barrel",
+        "x": -44,
+        "z": 44,
+        "rot": 0.0
+      },
+      {
+        "type": "cart",
+        "x": 8,
+        "z": 40,
+        "rot": 0.7
+      },
+      {
+        "type": "cart",
+        "x": -70,
+        "z": -30,
+        "rot": -0.4
+      },
+      {
+        "type": "well",
+        "x": -6,
+        "z": 22,
+        "rot": 0.0
+      },
+      {
+        "type": "fence",
+        "x": -40,
+        "z": -70,
+        "rot": 0.0
+      },
+      {
+        "type": "fence",
+        "x": -30,
+        "z": -70,
+        "rot": 0.0
+      },
+      {
+        "type": "fence",
+        "x": -20,
+        "z": -70,
+        "rot": 0.0
+      },
+      {
+        "type": "fence",
+        "x": 60,
+        "z": 50,
+        "rot": 1.57
+      },
+      {
+        "type": "fence",
+        "x": 60,
+        "z": 60,
+        "rot": 1.57
+      },
+      {
+        "type": "tree",
+        "x": -110,
+        "z": 30,
+        "rot": 0.0
+      },
+      {
+        "type": "tree",
+        "x": -104,
+        "z": 44,
+        "rot": 0.0
+      },
+      {
+        "type": "tree",
+        "x": -116,
+        "z": 58,
+        "rot": 0.0
+      },
+      {
+        "type": "tree",
+        "x": 108,
+        "z": -40,
+        "rot": 0.0
+      },
+      {
+        "type": "tree",
+        "x": 116,
+        "z": -26,
+        "rot": 0.0
+      },
+      {
+        "type": "tree",
+        "x": 100,
+        "z": -54,
+        "rot": 0.0
+      },
+      {
+        "type": "tree",
+        "x": -80,
+        "z": 90,
+        "rot": 0.0
+      },
+      {
+        "type": "tree",
+        "x": -70,
+        "z": 100,
+        "rot": 0.0
+      },
+      {
+        "type": "tree",
+        "x": 90,
+        "z": 90,
+        "rot": 0.0
+      },
+      {
+        "type": "tree",
+        "x": 100,
+        "z": 100,
+        "rot": 0.0
+      },
+      {
+        "type": "haystack",
+        "x": -30,
+        "z": 80,
+        "rot": 0.0
+      },
+      {
+        "type": "haystack",
+        "x": 60,
+        "z": 84,
+        "rot": 0.0
+      },
+      {
+        "type": "wreck_tank",
+        "x": -50,
+        "z": -10,
+        "rot": 0.9
+      },
+      {
+        "type": "wreck_truck",
+        "x": 40,
+        "z": 44,
+        "rot": -0.6
+      }
+    ],
+    "spawns": [
+      {
+        "faction": "soviet",
+        "points": [
+          [
+            -62,
+            -72
+          ],
+          [
+            -52,
+            -78
+          ],
+          [
+            -72,
+            -62
+          ],
+          [
+            -58,
+            -58
+          ],
+          [
+            -68,
+            -80
+          ]
+        ]
+      },
+      {
+        "faction": "german",
+        "points": [
+          [
+            62,
+            72
+          ],
+          [
+            52,
+            78
+          ],
+          [
+            72,
+            62
+          ],
+          [
+            58,
+            58
+          ],
+          [
+            68,
+            80
+          ]
+        ]
+      }
+    ],
+    "objectives": [
+      {
+        "id": "church",
+        "name": {
+          "en": "Village Church",
+          "ar": "كنيسة القرية"
+        },
+        "x": 0,
+        "z": -8,
+        "radius": 14
+      },
+      {
+        "id": "crossroads",
+        "name": {
+          "en": "Crossroads",
+          "ar": "ملتقى الطرق"
+        },
+        "x": 0,
+        "z": 40,
+        "radius": 16
+      },
+      {
+        "id": "farm",
+        "name": {
+          "en": "Collective Farm",
+          "ar": "المزرعة الجماعية"
+        },
+        "x": 44,
+        "z": 70,
+        "radius": 15
+      }
+    ],
+    "weather": "overcast",
+    "timeOfDay": 7.5,
+    "notes": "A rural Soviet village on the approach to a river crossing. Wooden izbas and barns around a church, with trench lines to the north and south and a wrecked tank on the road. Designed for 8v8 infantry combat with room for a machine-gun position on each flank."
+  }
+]

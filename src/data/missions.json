@@ -1,0 +1,63 @@
+[
+  {
+    "id": "m01_hold_the_village",
+    "name": { "en": "Hold the Village", "ar": "احتفظ بالقرية" },
+    "map": "village_kalinovka",
+    "mode": "defend",
+    "faction": "soviet",
+    "briefing": {
+      "en": "Dawn, 12 July 1943. German infantry are advancing on Kalinovka from the south-east. You are a Red Army rifleman. Hold the church and the crossroads until the counter-attack arrives. Ammunition is limited; make every round count.",
+      "ar": "فجر 12 يوليو 1943. مشاة ألمانية تتقدم نحو كالينوفكا من الجنوب الشرقي. أنت جندي مشاة سوفييتي. احتفظ بالكنيسة وملتقى الطرق حتى وصول الهجوم المضاد. الذخيرة محدودة؛ اجعل كل طلقة تُحسب."
+    },
+    "objectives": [
+      { "id": "hold_church", "text": { "en": "Hold the church", "ar": "احتفظ بالكنيسة" }, "type": "capture", "target": "church", "count": 1 },
+      { "id": "hold_crossroads", "text": { "en": "Hold the crossroads", "ar": "احتفظ بملتقى الطرق" }, "type": "capture", "target": "crossroads", "count": 1 },
+      { "id": "kill_enough", "text": { "en": "Repel the assault", "ar": "صُد الهجوم" }, "type": "eliminate", "target": "enemy", "count": 12 }
+    ],
+    "enemyCount": 12,
+    "allyCount": 6,
+    "difficulty": "regular",
+    "timeLimit": 900,
+    "notes": "The G1 vertical-slice mission. Defensive infantry fight with a machine-gun position available on the church tower."
+  },
+  {
+    "id": "m02_take_the_crossing",
+    "name": { "en": "Take the Crossing", "ar": "خُذ المعبر" },
+    "map": "village_kalinovka",
+    "mode": "assault",
+    "faction": "soviet",
+    "briefing": {
+      "en": "The village must be cleared before the engineers can bridge the river. Advance from the north trench line, clear the church and the farm, and hold until relieved.",
+      "ar": "يجب تطهير القرية قبل أن يتمكن المهندسون من بناء الجسر. تقدم من خط الخندق الشمالي، وطهّر الكنيسة والمزرعة، واصمد حتى وصول الدعم."
+    },
+    "objectives": [
+      { "id": "take_church", "text": { "en": "Clear the church", "ar": "طهّر الكنيسة" }, "type": "capture", "target": "church", "count": 1 },
+      { "id": "take_farm", "text": { "en": "Clear the collective farm", "ar": "طهّر المزرعة الجماعية" }, "type": "capture", "target": "farm", "count": 1 },
+      { "id": "survive", "text": { "en": "Hold until relieved", "ar": "اصمد حتى وصول الدعم" }, "type": "survive", "target": "timer", "count": 300 }
+    ],
+    "enemyCount": 14,
+    "allyCount": 7,
+    "difficulty": "veteran",
+    "timeLimit": 1200,
+    "notes": "Offensive variant of the same map, played from the opposite spawn."
+  },
+  {
+    "id": "m00_range",
+    "name": { "en": "Proving Ground", "ar": "ميدان الرماية" },
+    "map": "village_kalinovka",
+    "mode": "training",
+    "faction": "soviet",
+    "briefing": {
+      "en": "A quiet corner of the rear area. Every weapon in the armoury is on the rack and the targets do not shoot back. Use this to learn the recoil, the reload timings and the bipod before you go forward.",
+      "ar": "زاوية هادئة في المؤخرة. كل سلاح في المستودع على الرف والأهداف لا ترد. استخدم هذا لتتعلم الارتداد وأزمنة التلقيم والحامل الثنائي قبل أن تتقدم."
+    },
+    "objectives": [
+      { "id": "practice", "text": { "en": "Fire every weapon at the range", "ar": "جرّب كل سلاح في الميدان" }, "type": "reach", "target": "range", "count": 1 }
+    ],
+    "enemyCount": 0,
+    "allyCount": 0,
+    "difficulty": "recruit",
+    "timeLimit": 0,
+    "notes": "No enemies. Free weapon selection, infinite ammunition, static targets at 50/100/200/400 m."
+  }
+]

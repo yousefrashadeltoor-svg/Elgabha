@@ -1,0 +1,11 @@
+[
+  { "id": "792x57_mauser", "name": { "en": "7.92x57mm Mauser S.m.K.", "ar": "7.92×57 مأوزر" }, "caliber": "7.92x57mm Mauser", "mass": 12.8, "velocity": 760, "bc": 0.55, "notes": "German full-power rifle/MG round. 12.8 g spitzer, ~760 m/s from a 600 mm barrel." },
+  { "id": "792x33_kurz", "name": { "en": "7.92x33mm Kurz", "ar": "7.92×33 كورتز" }, "caliber": "7.92x33mm Kurz", "mass": 8.2, "velocity": 685, "bc": 0.28, "notes": "German intermediate cartridge developed for the StG 44." },
+  { "id": "9x19_para", "name": { "en": "9x19mm Parabellum", "ar": "9×19 بارابيلوم" }, "caliber": "9x19mm Parabellum", "mass": 8.0, "velocity": 380, "bc": 0.16, "notes": "German pistol/SMG round. Subsonic from most barrels." },
+  { "id": "762x54r", "name": { "en": "7.62x54mmR", "ar": "7.62×54R" }, "caliber": "7.62x54mmR", "mass": 11.3, "velocity": 865, "bc": 0.52, "notes": "Soviet rimmed full-power round. 11.3 g light ball, ~865 m/s from the M91/30." },
+  { "id": "762x25_tok", "name": { "en": "7.62x25mm Tokarev", "ar": "7.62×25 توكاريف" }, "caliber": "7.62x25mm Tokarev", "mass": 5.5, "velocity": 490, "bc": 0.13, "notes": "Soviet bottlenecked pistol round. High velocity for a handgun cartridge, good penetration." },
+  { "id": "762x38r_nagant", "name": { "en": "7.62x38mmR Nagant", "ar": "7.62×38R ناغانت" }, "caliber": "7.62x38mmR", "mass": 6.5, "velocity": 272, "bc": 0.09, "notes": "Soviet revolver round. The bullet sits inside the case; the gas seal adds velocity." },
+  { "id": "145x114_at", "name": { "en": "14.5x114mm AT", "ar": "14.5×114 مضاد دروع" }, "caliber": "14.5x114mm", "mass": 64.0, "velocity": 1012, "bc": 0.75, "notes": "Soviet anti-tank rifle round. 64 g bullet at over 1000 m/s." },
+  { "id": "panzerfaust_60", "name": { "en": "Panzerfaust 60 warhead", "ar": "رأس بانزرفاوست 60" }, "caliber": "60mm shaped charge", "mass": 2900.0, "velocity": 45, "bc": 0.5, "notes": "Shaped-charge warhead. Penetration is by jet, not kinetic energy, so range barely affects it." },
+  { "id": "rpzb_88", "name": { "en": "RPzB 88 rocket", "ar": "صاروخ RPzB 88" }, "caliber": "88mm rocket", "mass": 3300.0, "velocity": 105, "bc": 0.5, "notes": "Rocket with a shaped-charge warhead. Motor burns briefly after launch." }
+]
